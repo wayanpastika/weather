@@ -10,7 +10,7 @@ const Header = (props) =>{
 };
 const styles = {
   contHeader: {
-    backgroundColor: 'green',
+    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 10,
