@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
 const windIcon = require('./img/wind.png');
 const tempIcon = require('./img/temp.png');
 const mainIcon = require('./img/main.png');
-const levelIcon = require('./img/sea.png');
+const seaIcon = require('./img/sea.png');
+
 
 export default class BelajarLayout extends React.Component {
   constructor(props) {
@@ -76,91 +77,91 @@ getWeather= () => {
         <View style={styles.Box3}>
           <View style={styles.Box3a}>
             <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
+              <View style={styles.iconContainer}>
+                <Image source={tempIcon} style={styles.icon} />
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>Temp : {this.state.forecast.temp}</Text>
+                <Text style={styles.Texthead4}>Temp : {this.state.forecast.temp}</Text>
               </View>
             </View>
             <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>Wind Speed : {this.state.forecast.speed}</Text>
-              </View>
+            <View style={styles.iconContainer}>
+              <Image source={windIcon} style={styles.icon} />
             </View>
-          </View>
-          <View style={styles.Box3a}>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>Main : {this.state.forecast.main}</Text>
-              </View>
-            </View>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>Manin Desc : {this.state.forecast.description}</Text>
+                <Text style={styles.Texthead4}>Wind Speed : {this.state.forecast.speed}</Text>
               </View>
             </View>
           </View>
           <View style={styles.Box3a}>
             <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
+            <View style={styles.iconContainer}>
+              <Image source={mainIcon} style={styles.icon} />
+            </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>Surise : {this.state.forecast.sunrise}</Text>
+                <Text style={styles.Texthead4}>Main : {this.state.forecast.main}</Text>
               </View>
             </View>
             <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
+              <View style={styles.iconContainer}>
+                <Image source={tempIcon} style={styles.icon} />
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>Sunset : {this.state.forecast.sunset}</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.Box3a}>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>Presure : {this.state.forecast.pressure}</Text>
-              </View>
-            </View>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>Humadity : {this.state.forecast.humidity}</Text>
+                <Text style={styles.Texthead4}>Manin Desc : {this.state.forecast.description}</Text>
               </View>
             </View>
           </View>
           <View style={styles.Box3a}>
             <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
+            <View style={styles.iconContainer}>
+              <Image source={mainIcon} style={styles.icon} />
+            </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>Sea Level : {this.state.forecast.sea_level}</Text>
+                <Text style={styles.Texthead4}>Surise : {this.state.forecast.sunrise}</Text>
               </View>
             </View>
             <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
+              <View style={styles.iconContainer}>
+                <Image source={mainIcon} style={styles.icon} />
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>Ground Level : {this.state.forecast.grnd_level}</Text>
+                <Text style={styles.Texthead4}>Sunset : {this.state.forecast.sunset}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.Box3a}>
+            <View style={styles.Box3b}>
+              <View style={styles.iconContainer}>
+                <Image source={tempIcon} style={styles.icon} />
+              </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.Texthead4}>Presure : {this.state.forecast.pressure}</Text>
+              </View>
+            </View>
+            <View style={styles.Box3b}>
+              <View style={styles.iconContainer}>
+                <Image source={tempIcon} style={styles.icon} />
+              </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.Texthead4}>Humadity : {this.state.forecast.humidity}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.Box3a}>
+            <View style={styles.Box3b}>
+            <View style={styles.iconContainer}>
+              <Image source={seaIcon} style={styles.icon} />
+            </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.Texthead4}>Sea Level : {this.state.forecast.sea_level}</Text>
+              </View>
+            </View>
+            <View style={styles.Box3b}>
+              <View style={styles.iconContainer}>
+                <Image source={tempIcon} style={styles.icon} />
+              </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.Texthead4}>Ground Level : {this.state.forecast.grnd_level}</Text>
               </View>
             </View>
           </View>
@@ -236,6 +237,7 @@ const styles = StyleSheet.create({
   },
   Box3d: {
     flex: 2,
+    justifyContent: 'space-around',
     backgroundColor: '#1E90FF',
   },
   Box4: {
@@ -258,5 +260,24 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'left',
     color: '#000000'
+  },
+  Texthead4: {
+    fontSize: 15,
+    textAlign: 'left',
+    color: '#000000'
+  },
+  iconContainer: {
+    alignItems: 'center',
+    backgroundColor: '#feb401',
+    borderColor: '#feaf12',
+    borderWidth: 1,
+    justifyContent: 'center',
+    height: 77,
+    width: 70,
+  },
+  icon: {
+    tintColor: '#fff',
+    height: 40,
+    width: 40,
   }
 });
