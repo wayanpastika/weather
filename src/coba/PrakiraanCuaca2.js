@@ -1,24 +1,47 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+const windIcon = require('./img/wind.png');
+const tempIcon = require('./img/temp.png');
+const mainIcon = require('./img/main.png');
+const levelIcon = require('./img/sea.png');
 
 export default class BelajarLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    kota: ''
+    kota: '',
+    forecast: {
+        main: '-',
+        description: '-',
+        temp: 0,
+        sunrise: 0,
+        sunset: 0,
+        pressure: 0,
+        humidity: 0,
+        sea_level: 0,
+        grnd_level: 0,
+        speed: 0,
+      }
   };
 }
 getWeather= () => {
-  let url='http://api.openweathermap.org/data/2.5/weather?q=' + this.state.kota + '&appid=58da9bfc6af4de163c35f71bf0757880&units=metric';
-  fetch (url)
-  . then ((response) => response.json())
-  . then ((responseJson) => {
+  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.state.kota + '&appid=58da9bfc6af4de163c35f71bf0757880&units=metric';
+  fetch(url)
+  .then((response) => response.json())
+  .then((responseJson) => {
     console.log(responseJson);
     this.setState({
       forecast: {
         main: responseJson.weather[0].main,
         description: responseJson.weather[0].description,
-        temp: responseJson.main.temp
+        temp: responseJson.main.temp,
+        sunrise: responseJson.sys.sunrise,
+        sunset: responseJson.sys.sunset,
+        pressure: responseJson.main.pressure,
+        humidity: responseJson.main.humidity,
+        sea_level: responseJson.main.sea_level,
+        grnd_level: responseJson.main.grnd_level,
+        speed: responseJson.wind.speed
         }
       });
     }
@@ -36,17 +59,13 @@ getWeather= () => {
           </View>
           <View style={styles.Box2a}>
             <TextInput
-            onSubmitEditing={
-              (event) => this.setState({ kota: event.nativeEvent.text })
-            }
+              onChangeText={(kota) => this.setState({ kota })}
             />
             <Button
-              onPress={()=>this.setState({
-                kota : (this.state.kota)
-              })}
-              title="Lihat"
-              accessibilityLabel="Klik untuk melihat"
-              color='#ef5350'
+              onPress={() => this.getWeather()}
+              title="Cari"
+              color="black"
+              accessibilityLabel="Klik untuk melihat cuaca"
             />
           </View>
           <View style={styles.Box2b}>
@@ -61,7 +80,7 @@ getWeather= () => {
                 <Text style={styles.text}>icon</Text>
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>{this.state.kota}</Text>
+                <Text style={styles.text}>Temp : {this.state.forecast.temp}</Text>
               </View>
             </View>
             <View style={styles.Box3b}>
@@ -69,25 +88,7 @@ getWeather= () => {
                 <Text style={styles.text}>icon</Text>
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.Box3a}>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
-              </View>
-            </View>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
+                <Text style={styles.text}>Wind Speed : {this.state.forecast.speed}</Text>
               </View>
             </View>
           </View>
@@ -97,7 +98,7 @@ getWeather= () => {
                 <Text style={styles.text}>icon</Text>
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
+                <Text style={styles.text}>Main : {this.state.forecast.main}</Text>
               </View>
             </View>
             <View style={styles.Box3b}>
@@ -105,25 +106,7 @@ getWeather= () => {
                 <Text style={styles.text}>icon</Text>
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.Box3a}>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
-              </View>
-            </View>
-            <View style={styles.Box3b}>
-              <View style={styles.Box3c}>
-                <Text style={styles.text}>icon</Text>
-              </View>
-              <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
+                <Text style={styles.text}>Manin Desc : {this.state.forecast.description}</Text>
               </View>
             </View>
           </View>
@@ -133,7 +116,7 @@ getWeather= () => {
                 <Text style={styles.text}>icon</Text>
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
+                <Text style={styles.text}>Surise : {this.state.forecast.sunrise}</Text>
               </View>
             </View>
             <View style={styles.Box3b}>
@@ -141,7 +124,43 @@ getWeather= () => {
                 <Text style={styles.text}>icon</Text>
               </View>
               <View style={styles.Box3d}>
-                <Text style={styles.text}>isi</Text>
+                <Text style={styles.text}>Sunset : {this.state.forecast.sunset}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.Box3a}>
+            <View style={styles.Box3b}>
+              <View style={styles.Box3c}>
+                <Text style={styles.text}>icon</Text>
+              </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.text}>Presure : {this.state.forecast.pressure}</Text>
+              </View>
+            </View>
+            <View style={styles.Box3b}>
+              <View style={styles.Box3c}>
+                <Text style={styles.text}>icon</Text>
+              </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.text}>Humadity : {this.state.forecast.humidity}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.Box3a}>
+            <View style={styles.Box3b}>
+              <View style={styles.Box3c}>
+                <Text style={styles.text}>icon</Text>
+              </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.text}>Sea Level : {this.state.forecast.sea_level}</Text>
+              </View>
+            </View>
+            <View style={styles.Box3b}>
+              <View style={styles.Box3c}>
+                <Text style={styles.text}>icon</Text>
+              </View>
+              <View style={styles.Box3d}>
+                <Text style={styles.text}>Ground Level : {this.state.forecast.grnd_level}</Text>
               </View>
             </View>
           </View>

@@ -5,8 +5,29 @@ export default class BelajarLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    kota: ''
+    kota: '',
+    forecast: {
+        main: '-',
+        description: '-',
+        temp: 0,
+      }
   };
+}
+getWeather= () => {
+  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.state.kota + '&appid=58da9bfc6af4de163c35f71bf0757880&units=metric';
+  fetch(url)
+  .then((response) => response.json())
+  .then((responseJson) => {
+    console.log(responseJson);
+    this.setState({
+      forecast: {
+        main: responseJson.weather[0].main,
+        description: responseJson.weather[0].description,
+        temp: responseJson.main.temp
+        }
+      });
+    }
+  );
 }
   render() {
     return (
@@ -20,9 +41,13 @@ export default class BelajarLayout extends React.Component {
           </View>
           <View style={styles.Box2a}>
             <TextInput
-            onSubmitEditing={
-              (event) => this.setState({ kota: event.nativeEvent.text })
-            }
+              onChangeText={(kota) => this.setState({ kota })}
+            />
+            <Button
+            onPress={() => this.getWeather()}
+              title="Cari"
+              color="black"
+              accessibilityLabel="Klik untuk melihat cuaca"
             />
           </View>
           <View style={styles.Box2b}>
@@ -32,9 +57,9 @@ export default class BelajarLayout extends React.Component {
         </View>
         <View style={styles.Box3}>
           <Text style={styles.Texthead3}>
-            Suhu : {"\n"}
-            Cuaca : {"\n"}
-            Deskripsi : {"\n"}
+            Suhu : {this.state.forecast.temp}{"\n"}
+            Cuaca : {this.state.forecast.main}{"\n"}
+            Deskripsi : {this.state.forecast.description}{"\n"}
           </Text>
         </View>
         <View style={styles.Box4}>
